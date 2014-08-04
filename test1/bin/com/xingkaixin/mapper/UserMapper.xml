@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xingkaixin.mapper.UserMapper">
+    <select id="countAll" resultType="int">
+        select count(*) c from kevin_mybatis_user
+    </select>
+    
+    <select id="selectAll" resultType="com.xingkaixin.model.User">
+        select * from  kevin_mybatis_user ORDER  BY userName asc
+    </select>
+    
+    <insert id="insert" parameterType="com.xingkaixin.model.User">
+        insert into kevin_mybatis_user(userId,userName,passwords,comments) values(#{userId,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{passwords,jdbcType=VARCHAR},#{comments,jdbcType=VARCHAR})
+    </insert>
+    
+    <update id="update" parameterType="com.xingkaixin.model.User">
+        update kevin_mybatis_user set userName=#{userName},passwords=#{passwords},comments=#{comments} where userName=#{userName}
+    </update>
+    
+    <delete id="delete" parameterType="com.xingkaixin.model.User" >
+        delete from kevin_mybatis_user where userName=#{userName}
+    </delete>
+    
+    <select id="findByUserName" parameterType="com.xingkaixin.model.User"  resultType="com.xingkaixin.model.User">
+        select * from kevin_mybatis_user where userName=#{userName}
+    </select>
+</mapper>
